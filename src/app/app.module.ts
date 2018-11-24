@@ -11,6 +11,13 @@ import { RoutesService } from './routes.service';
 import { AccountComponent } from './account/account.component';
 import { UserComponent } from './account/user/user.component';
 import { AdminComponent } from './account/admin/admin.component';
+import { HomeHeaderComponent } from './Components/home-header/home-header.component';
+import { AccountHeaderComponent } from './Components/account-header/account-header.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { LeftNavComponent } from './Components/left-nav/left-nav.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule, MatInputModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -20,12 +27,20 @@ import { AdminComponent } from './account/admin/admin.component';
     RegisterComponent,
     LoginComponent,
     AccountComponent,
-    UserComponent
+    UserComponent,
+    HomeHeaderComponent,
+    AccountHeaderComponent,
+    FooterComponent,
+    LeftNavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RoutesService
+    RoutesService,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
