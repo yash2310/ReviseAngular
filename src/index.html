@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>AngularApp</title>
@@ -7,14 +8,35 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="assets/aceAdmin/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/aceAdmin/font-awesome/4.5.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="assets/aceAdmin/css/fonts.googleapis.com.css" />
+  <link rel="stylesheet" href="assets/aceAdmin/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+  <link rel="stylesheet" href="assets/aceAdmin/css/ace-skins.min.css" />
+  <link rel="stylesheet" href="assets/aceAdmin/css/ace-rtl.min.css" />
+
+  <script src="assets/aceAdmin/js/ace-extra.min.js"></script>
 
 </head>
+
 <body>
-  <app-root></app-root>
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/bootstrap.min.js"></script>
+  <div class="no-skin">
+    <app-root></app-root>
+  </div>
+  <script src="assets/aceAdmin/js/jquery-2.1.4.min.js"></script>
   <script src="assets/js/popper.min.js"></script>
+  <script src="assets/aceAdmin/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script src='assets/aceAdmin/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+  </script>
+  <script src="assets/aceAdmin/js/bootstrap-tag.min.js"></script>
+  <script src="assets/aceAdmin/js/jquery.hotkeys.index.min.js"></script>
+  <script src="assets/aceAdmin/js/bootstrap-wysiwyg.min.js"></script>
+  <script src="assets/aceAdmin/js/ace-elements.min.js"></script>
+  <script src="assets/aceAdmin/js/ace.min.js"></script>
+
+
 </body>
+
 </html>

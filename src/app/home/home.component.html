@@ -1,6 +1,25 @@
-<!-- {{homecomponent}}
-<p>
-  Home Component works!
-</p> -->
+<!-- #region Header -->
+<app-home-header></app-home-header>
+<!-- #endregion -->
 
-<router-outlet></router-outlet>
+<div class="main-container ace-save-state" id="main-container">
+  <script type="text/javascript">
+    try { ace.settings.loadState('main-container') } catch (e) { }
+  </script>
+
+  <!-- #region Main Content -->
+  <div class="main-content">
+      <!-- #region Page Content -->
+        <router-outlet></router-outlet>
+      <!-- #endregion -->
+  </div>
+  <!-- #endregion -->
+
+  <!-- #region Footer -->
+  <app-footer></app-footer>
+
+  <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+    <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+  </a>
+  <!-- #endregion -->
+</div>

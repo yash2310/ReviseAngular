@@ -1,5 +1,55 @@
-<p>
-  account works!
-</p>
+<!-- #region Header -->
+<app-home-header></app-home-header>
+<!-- #endregion -->
 
-<router-outlet></router-outlet>
+<div class="main-container ace-save-state" id="main-container">
+  <script type="text/javascript">
+    try { ace.settings.loadState('main-container') } catch (e) { }
+  </script>
+
+  <div id="sidebar" class="sidebar responsive ace-save-state" data-sidebar="true"
+    data-sidebar-scroll="true" data-sidebar-hover="true">
+    <script type="text/javascript">
+      try { ace.settings.loadState('sidebar') } catch (e) { }
+    </script>
+    <!-- #region Left Menu -->
+    <app-left-nav></app-left-nav>
+    <!-- #endregion -->
+  </div>
+
+  <!-- #region Main Content -->
+  <div class="main-content">
+    <div class="main-content-inner">
+      <!-- #region BreadCrum -->
+      <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+        <ul class="breadcrumb">
+          <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#">Home</a>
+          </li>
+
+          <li>
+            <a href="#">More Pages</a>
+          </li>
+          <li class="active">Inbox</li>
+        </ul>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region Page Content -->
+      <div class="page-content">
+        <router-outlet></router-outlet>
+      </div>
+      <!-- #endregion -->
+    </div>
+  </div>
+  <!-- #endregion -->
+
+  <!-- #region Footer -->
+  <app-footer></app-footer>
+
+  <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+    <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+  </a>
+  <!-- #endregion -->
+</div>
