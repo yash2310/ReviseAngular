@@ -23,8 +23,9 @@ import {
 } from "@angular/material";
 import { MatDividerModule } from "@angular/material/divider";
 import { ForgetComponent } from "./home/forget/forget.component";
-import {HttpModule} from "@angular/http";
-import {HttpClientModule} from "@angular/common/http";
+import { HttpModule } from "@angular/http";
+import { HttpClientModule } from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,9 @@ import {HttpClientModule} from "@angular/common/http";
     MatInputModule,
     MatDividerModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
