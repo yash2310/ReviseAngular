@@ -23,6 +23,8 @@ import {
 } from "@angular/material";
 import { MatDividerModule } from "@angular/material/divider";
 import { ForgetComponent } from "./home/forget/forget.component";
+import {HttpModule} from "@angular/http";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { ForgetComponent } from "./home/forget/forget.component";
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,
-    MatDividerModule
+    MatDividerModule,
+    HttpModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
