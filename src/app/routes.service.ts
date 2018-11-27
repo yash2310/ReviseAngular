@@ -7,28 +7,34 @@ import { AccountComponent } from "./account/account.component";
 import { AdminComponent } from "./account/admin/admin.component";
 import { UserComponent } from "./account/user/user.component";
 import { ForgetComponent } from "./home/forget/forget.component";
+import { AuthGuard } from "./auth.guard";
+import { RoleGuard } from "./role.guard";
+import { LogoutComponent } from "./account/logout/logout.component";
 
 // @Injectable({
 //   providedIn: 'root'
 // })
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: "home",
     component: HomeComponent,
     children: [
       { path: "login", component: LoginComponent },
       { path: "register", component: RegisterComponent },
-      { path: "forgetpassword", component: ForgetComponent }
+      { path: "forgetpassword", component: ForgetComponent },
     ]
   },
   {
     path: "account",
     component: AccountComponent,
+    canActivate: [AuthGuard],
     children: [
-      { path: "admin", component: AdminComponent },
-      { path: "user", component: UserComponent }
+      { path: "admin", canActivate: [RoleGuard], component: AdminComponent },
+      { path: "user", component: UserComponent },
+      { path: "logout", component: LogoutComponent }
     ]
-  }
+  },
+  { path: '**', redirectTo: '/home/login' },
 ];
 
 @NgModule({
@@ -36,5 +42,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class RoutesService {
-  constructor() {}
+  constructor() { }
 }

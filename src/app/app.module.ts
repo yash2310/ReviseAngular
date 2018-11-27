@@ -6,7 +6,7 @@ import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 import { RegisterComponent } from "./home/register/register.component";
 import { LoginComponent } from "./home/login/login.component";
-import { RoutesService } from "./routes.service";
+import { routes } from "./routes.service";
 import { AccountComponent } from "./account/account.component";
 import { UserComponent } from "./account/user/user.component";
 import { AdminComponent } from "./account/admin/admin.component";
@@ -26,6 +26,10 @@ import { ForgetComponent } from "./home/forget/forget.component";
 import { HttpModule } from "@angular/http";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AuthGuard } from "./auth.guard";
+import { RouterModule } from "@angular/router";
+import { AuthService } from "./auth.service";
+import { LogoutComponent } from './account/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -40,13 +44,13 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     AccountHeaderComponent,
     FooterComponent,
     LeftNavComponent,
-    ForgetComponent
+    ForgetComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
-    RoutesService,
+    RouterModule.forRoot(routes),
     AppRoutingModule,
-    RoutesService,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -57,7 +61,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
