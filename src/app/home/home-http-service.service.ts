@@ -18,6 +18,12 @@ export class HomeHttpServiceService {
       .post("http://localhost:50207/api/Login/Login", data)
       .pipe(map((response: any) => {return response.json()}));
   }
+  
+  RegisterService(data) {
+    return this.httpclient
+      .post("http://localhost:50207/api/User/Register", data)
+      .pipe(map((response: any) => {return response.json()}));
+  }
 
   // getData() {
   //   this.httpclient.get("")

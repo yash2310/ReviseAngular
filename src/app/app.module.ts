@@ -30,8 +30,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AuthGuard } from "./auth.guard";
 import { RouterModule } from "@angular/router";
 import { AuthService } from "./auth.service";
-import { LogoutComponent } from './account/logout/logout.component';
-import { ToasterService } from "./toaster-service.service";
+import { LogoutComponent } from "./account/logout/logout.component";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -62,9 +62,14 @@ import { ToasterService } from "./toaster-service.service";
     HttpModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: "toast-bottom-right",
+      preventDuplicates: true
+    })
   ],
-  providers: [AuthService, AuthGuard, ToasterService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

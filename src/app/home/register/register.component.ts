@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HomeHttpServiceService } from '../home-http-service.service';
-import { Router } from '@angular/router';
-import { ToasterService } from 'src/app/toaster-service.service';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { HomeHttpServiceService } from "../home-http-service.service";
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import { timeout } from "q";
 
 export interface Gender {
   value: string;
@@ -26,10 +27,62 @@ export class RegisterComponent implements OnInit {
   ];
 
   constructor(
-    private _toastrService: ToasterService,
+    private _toastrService: ToastrService,
     private _service: HomeHttpServiceService,
     private _router: Router
   ) {
+    this.ReInitializeForm();
+  }
+
+  ngOnInit() { }
+
+  OnSubmit() {
+    if (!this.registerForm.valid) {
+      this._toastrService.warning("Invalid Form Data !!!");
+      this.ReInitializeForm();
+    } else {
+      this.registerData = {
+        firstName: this.registerForm.controls["Firstname"].value,
+        lastName: this.registerForm.controls["Lastname"].value,
+        fullName: this.registerForm.controls["Firstname"].value + " " + this.registerForm.controls["Lastname"].value,
+        email: this.registerForm.controls["Email"].value,
+        age: this.registerForm.controls["Age"].value,
+        gender: this.registerForm.controls["Gender"].value,
+        address1: this.registerForm.controls["Address1"].value,
+        address2: this.registerForm.controls["Address2"].value,
+        city: this.registerForm.controls["City"].value,
+        state: this.registerForm.controls["State"].value,
+        country: this.registerForm.controls["Country"].value,
+        encryptPassword: btoa(this.registerForm.controls["Password"].value),
+        // id: 0,
+        // active: true,
+        createdBy: JSON.parse(localStorage.getItem("userinfo")).email,
+        // createdOn: Date.now(),
+        updatedBy: JSON.parse(localStorage.getItem("userinfo")).email,
+        // updatedOn: Date.now()
+      };
+
+      debugger;
+      this._service.RegisterService(this.registerData).subscribe(data => {
+        this.response = data;
+        debugger;
+        if (data.message == "Failed") {
+          this._toastrService.error("Registration Unsuccessfull");
+        } else {
+          this._toastrService.success("Registration Successfull");
+          this.ReInitializeForm();
+        }
+      });
+    }
+  }
+
+  OnReset() {
+    debugger;
+  }
+
+  ReInitializeForm() {
+    debugger;
+
     this.registerForm = new FormGroup({
       Firstname: new FormControl("", Validators.required),
       Lastname: new FormControl("", Validators.required),
@@ -44,39 +97,5 @@ export class RegisterComponent implements OnInit {
       Password: new FormControl("", Validators.required),
       CPassword: new FormControl("", Validators.required)
     });
-  }
-
-  ngOnInit() { }
-  
-  OnSubmit() {
-    debugger;
-    if (!this.registerForm.valid) {
-
-    } else {
-      this.registerData = {
-        firstName: this.registerForm.controls[""].value,
-        lastName: this.registerForm.controls[""].value,
-        fullName: this.registerForm.controls[""].value,
-        email: this.registerForm.controls[""].value,
-        age: this.registerForm.controls[""].value,
-        gender: this.registerForm.controls[""].value,
-        address1: this.registerForm.controls[""].value,
-        address2: this.registerForm.controls[""].value,
-        city: this.registerForm.controls[""].value,
-        state: this.registerForm.controls[""].value,
-        country: this.registerForm.controls[""].value,
-        encryptPassword: this.registerForm.controls[""].value,
-        id: 0,
-        active: true,
-        createdBy: JSON.parse(localStorage.getItem("userinfo")).email,
-        createdOn: Date.now(),
-        updatedBy: JSON.parse(localStorage.getItem("userinfo")).email,
-        updatedOn: Date.now()
-      };
-    }
-  }
-
-  OnReset() {
-    debugger;
   }
 }
