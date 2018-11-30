@@ -19,7 +19,8 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import {
   MatButtonModule,
   MatCheckboxModule,
-  MatInputModule
+  MatInputModule,
+  MatSelectModule
 } from "@angular/material";
 import { MatDividerModule } from "@angular/material/divider";
 import { ForgetComponent } from "./home/forget/forget.component";
@@ -30,6 +31,7 @@ import { AuthGuard } from "./auth.guard";
 import { RouterModule } from "@angular/router";
 import { AuthService } from "./auth.service";
 import { LogoutComponent } from './account/logout/logout.component';
+import { ToasterService } from "./toaster-service.service";
 
 @NgModule({
   declarations: [
@@ -56,12 +58,13 @@ import { LogoutComponent } from './account/logout/logout.component';
     MatCheckboxModule,
     MatInputModule,
     MatDividerModule,
+    MatSelectModule,
     HttpModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, ToasterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
