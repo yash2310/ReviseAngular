@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   registerData: any;
   response: any;
+  isValid: boolean = false;
 
   genders: Gender[] = [
     { value: "M", viewValue: "Male" },
@@ -37,14 +38,19 @@ export class RegisterComponent implements OnInit {
   ngOnInit() { }
 
   OnSubmit() {
+    this.isValid = true;
+    debugger;
     if (!this.registerForm.valid) {
       this._toastrService.warning("Invalid Form Data !!!");
-      this.ReInitializeForm();
+      this.isValid = false;
     } else {
       this.registerData = {
         firstName: this.registerForm.controls["Firstname"].value,
         lastName: this.registerForm.controls["Lastname"].value,
-        fullName: this.registerForm.controls["Firstname"].value + " " + this.registerForm.controls["Lastname"].value,
+        fullName:
+          this.registerForm.controls["Firstname"].value +
+          " " +
+          this.registerForm.controls["Lastname"].value,
         email: this.registerForm.controls["Email"].value,
         age: this.registerForm.controls["Age"].value,
         gender: this.registerForm.controls["Gender"].value,
@@ -55,10 +61,10 @@ export class RegisterComponent implements OnInit {
         country: this.registerForm.controls["Country"].value,
         encryptPassword: btoa(this.registerForm.controls["Password"].value),
         // id: 0,
-        // active: true,
+        active: true,
         createdBy: JSON.parse(localStorage.getItem("userinfo")).email,
         // createdOn: Date.now(),
-        updatedBy: JSON.parse(localStorage.getItem("userinfo")).email,
+        updatedBy: JSON.parse(localStorage.getItem("userinfo")).email
         // updatedOn: Date.now()
       };
 
@@ -67,12 +73,17 @@ export class RegisterComponent implements OnInit {
         this.response = data;
         debugger;
         if (data.message == "Failed") {
-          this._toastrService.error("Registration Unsuccessfull");
+          if (data.data == "Duplicate") {
+            this._toastrService.warning("Email already exist !!");
+          } else {
+            this._toastrService.error("Registration Unsuccessfull");
+          }
         } else {
           this._toastrService.success("Registration Successfull");
           this.ReInitializeForm();
         }
       });
+      this.isValid = false;
     }
   }
 
@@ -81,8 +92,6 @@ export class RegisterComponent implements OnInit {
   }
 
   ReInitializeForm() {
-    debugger;
-
     this.registerForm = new FormGroup({
       Firstname: new FormControl("", Validators.required),
       Lastname: new FormControl("", Validators.required),
